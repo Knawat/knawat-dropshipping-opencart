@@ -509,15 +509,17 @@ class KnawatImporter{
             /**
              * Setup Product Category.
              */
-            if( isset( $product->categories ) && !empty( $product->categories ) ) {
-                $new_cats = array();
-                foreach ( $product->categories as $category ) {
-                    if( isset( $category->name ) && !empty( $category->name ) ){
-                        $new_cats[] = (array)$category->name;
-                    }
-                }
-                $temp['product_category'] = $this->model_extension_module_knawat_dropshipping->parse_categories( $new_cats );
-            }
+            //make products get uncategorized in both import and update.
+
+            // if( isset( $product->categories ) && !empty( $product->categories ) ) {
+            //     $new_cats = array();
+            //     foreach ( $product->categories as $category ) {
+            //         if( isset( $category->name ) && !empty( $category->name ) ){
+            //             $new_cats[] = (array)$category->name;
+            //         }
+            //     }
+            //     $temp['product_category'] = $this->model_extension_module_knawat_dropshipping->parse_categories( $new_cats );
+            // }
 
             /**
              * Setup Product Images.
