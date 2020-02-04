@@ -268,6 +268,7 @@ class KnawatImporter{
             $product_data = $this->format_product( $product, true, $force_update );
             if( !empty( $product_data ) ){
                 if( $force_update ){
+                    $product_data['product_category'] = $this->model_catalog_product->getProductCategories($product_id);
                     $this->model_catalog_product->editProduct( $product_id, $product_data );
                 }else{
                     $product_id = $this->model_extension_module_knawat_dropshipping->partial_update_product( $product_id, $product_data );
