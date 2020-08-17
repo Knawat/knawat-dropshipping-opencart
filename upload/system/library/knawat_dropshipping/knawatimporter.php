@@ -268,6 +268,7 @@ class KnawatImporter{
             $product_data = $this->format_product( $product, true, $force_update );
             if( !empty( $product_data ) ){
                 if( $force_update ){
+                    $product_data['product_category'] = $this->model_catalog_product->getProductCategories($product_id);
                     $this->model_catalog_product->editProduct( $product_id, $product_data );
                 }else{
                     $product_id = $this->model_extension_module_knawat_dropshipping->partial_update_product( $product_id, $product_data );
@@ -358,7 +359,7 @@ class KnawatImporter{
                 $lng_code = $lng_code[0];
 
                 $name = $product->name;
-                $description = $product->description;
+                $description = empty($product->description)? "" : $product->description;
 
                 /*$product_name = array_key_exists( $lng_code, $name ) ? $name[$lng_code] : $name['en'];
                 $product_desc = array_key_exists( $lng_code, $description ) ? $description[$lng_code] : $description['en'];*/
@@ -509,15 +510,17 @@ class KnawatImporter{
             /**
              * Setup Product Category.
              */
-            if( isset( $product->categories ) && !empty( $product->categories ) ) {
-                $new_cats = array();
-                foreach ( $product->categories as $category ) {
-                    if( isset( $category->name ) && !empty( $category->name ) ){
-                        $new_cats[] = (array)$category->name;
-                    }
-                }
-                $temp['product_category'] = $this->model_extension_module_knawat_dropshipping->parse_categories( $new_cats );
-            }
+            //make products get uncategorized in both import and update.
+
+            // if( isset( $product->categories ) && !empty( $product->categories ) ) {
+            //     $new_cats = array();
+            //     foreach ( $product->categories as $category ) {
+            //         if( isset( $category->name ) && !empty( $category->name ) ){
+            //             $new_cats[] = (array)$category->name;
+            //         }
+            //     }
+            //     $temp['product_category'] = $this->model_extension_module_knawat_dropshipping->parse_categories( $new_cats );
+            // }
 
             /**
              * Setup Product Images.
