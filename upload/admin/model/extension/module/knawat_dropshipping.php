@@ -458,7 +458,7 @@ class ModelExtensionModuleKnawatDropshipping extends Model {
                                 }
                             }
 
-                            $option_value_id = $this->get_option_value_id_by_name( $okey, $option_id );
+                            $option_value_id = $this->get_option_value_id_by_name( addslashes($okey), $option_id );
                             if( !$option_value_id ){
                                 $option_value_id = $this->create_option_value( $ovalue, $option_id );
                             }
@@ -545,6 +545,7 @@ class ModelExtensionModuleKnawatDropshipping extends Model {
             if( empty( $attr_name ) ){
                 $attr_name = isset( $attribute_names['tr'] ) ? $attribute_names['tr'] : '';
             }
+			$attr_name = !empty($attr_name)? addslashes($attr_name) : "";
              $sql = "UPDATE " . DB_PREFIX . "option_description SET name = '".$attr_name."' WHERE option_id = ".(int)$option_id." AND language_id = " . (int)$lng['language_id'];
              $this->db->query($sql);
         }

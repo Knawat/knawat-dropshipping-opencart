@@ -359,7 +359,7 @@ class KnawatImporter{
                 $lng_code = $lng_code[0];
 
                 $name = $product->name;
-                $description = $product->description;
+                $description = empty($product->description)? "" : $product->description;
 
                 /*$product_name = array_key_exists( $lng_code, $name ) ? $name[$lng_code] : $name['en'];
                 $product_desc = array_key_exists( $lng_code, $description ) ? $description[$lng_code] : $description['en'];*/

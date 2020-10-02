@@ -32,6 +32,10 @@ $_['knawat_order_tracking_label'] = "Shipment Tracking Number :";
 $_['knawat_tracking_link_label']  = "Track";
 $_['text_enabled'] 				  = 'Enabled';
 $_['text_disabled'] 			  = 'Disabled';
+$_['text_sync']                   = 'Product Sync';
+$_['text_sync_product']           = 'If some of your products didn\'t get updated, you may need to Sync All, but it\'ll take a few hours maybe days to update all prices and stock.';
+$_['reset_time']                  = '1262304000';
+$_['text_reset_sync']             = 'Reset Sync';
 
 // Entry
 $_['entry_status']     				= 'Status';

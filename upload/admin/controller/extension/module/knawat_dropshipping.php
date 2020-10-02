@@ -342,11 +342,25 @@ class ControllerExtensionModuleKnawatDropshipping extends Controller {
 			$data['text_cron_sync_error'] = $this->language->get('text_cron_sync_error');
 			$data['trigger'] = $this->language->get('trigger');
 			$data['cronjob'] = $this->language->get('cronjob');
+			$data['text_sync'] = $this->language->get('text_sync');
+			$data['text_sync_product'] = $this->language->get('text_sync_product');
+			$data['reset_time'] = $this->language->get('reset_time');
+			$data['text_reset_sync'] = $this->language->get('text_reset_sync');
 		}
 		/*added for language*/
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
+
+		/*added call for function reset_sync()*/
+		if (isset($this->request->get['reset-sync']) && $this->request->get['reset-sync'] == true){
+			$this->reset_sync();
+		}
+
+		/*added last importing time*/
+		$knawat_time = $this->model_extension_module_knawat_dropshipping->get_knawat_meta('8159', 'time','knawat_last_imported');
+		$data['knawat_last_imported_time'] = empty($knawat_time)? 0 : $knawat_time;
+		$data['time_now'] = time();
 
 		$this->response->setOutput($this->load->view( $this->route, $data) );
 	}
@@ -364,6 +378,11 @@ class ControllerExtensionModuleKnawatDropshipping extends Controller {
 		return true;
 	}
 
+	public function reset_sync(){
+		$reset_time = 1262304000;
+		$this->model_extension_module_knawat_dropshipping->update_knawat_meta('8159', 'time', $reset_time , 'knawat_last_imported' );
+	}
+	
 	public function ajax_import(){
 		require_once( DIR_SYSTEM . 'library/knawat_dropshipping/knawatimporter.php');
 		set_time_limit(0);

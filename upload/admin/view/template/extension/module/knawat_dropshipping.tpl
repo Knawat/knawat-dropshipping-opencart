@@ -143,6 +143,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="last-update-knawat"><?php echo $text_sync ?></label>
+                        <div class="col-sm-10">
+                            <meter id="last-update-knawat" value="<?php echo $knawat_last_imported_time ?>" min="<?php echo $reset_time ?>" max="<?php echo $time_now ?>" style="height: 35px; width: 815px;"></meter>
+                            <h4><small><?php echo $text_sync_product ?></small></h4>
+                            <a id="knawat-resetsync" class="btn btn-primary"><?php echo $text_reset_sync ?></a>
+                        </div>
+                    </div>
                     <?php } ?>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $text_import_note; ?></label>
@@ -164,6 +172,11 @@
                 e.preventDefault();
                 process_step();
                 knawat_ajax_import_start();
+            });
+            $("#knawat-resetsync").on('click',function (e) {
+                var x = window.location.href;
+                x += '&reset-sync=true';
+                document.getElementById('knawat-resetsync').setAttribute('href', x);
             });
         });
 
