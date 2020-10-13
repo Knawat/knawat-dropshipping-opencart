@@ -144,11 +144,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="last-update-knawat"><?php echo $text_sync ?></label>
+                        <label class="col-sm-2 control-label" for="last-update-knawat"><?php echo $text_sync; ?></label>
                         <div class="col-sm-10">
-                            <meter id="last-update-knawat" value="<?php echo $knawat_last_imported_time ?>" min="<?php echo $reset_time ?>" max="<?php echo $time_now ?>" style="height: 35px; width: 815px;"></meter>
-                            <h4><small><?php echo $text_sync_product ?></small></h4>
-                            <a id="knawat-resetsync" class="btn btn-primary"><?php echo $text_reset_sync ?></a>
+                            <meter id="last-update-knawat" value="<?php echo $products_count-$products_synced; ?>" min="0" max="<?php echo $products_count; ?>" style="height: 35px; width: 815px;"></meter>
+                            <h4><small><?php echo $text_sync_product1 . ' ' . $products_count . ' ' . $text_sync_product2 . ' ' . $products_count-$products_synced . ' ' . $text_sync_product3; ?></small></h4>
+                            <a id="knawat-resetsync" class="btn btn-primary"><?php echo $text_reset_sync; ?></a>
                         </div>
                     </div>
                     <?php } ?>
@@ -174,8 +174,7 @@
                 knawat_ajax_import_start();
             });
             $("#knawat-resetsync").on('click',function (e) {
-                var x = window.location.href;
-                x += '&reset-sync=true';
+                var x = window.location.href + '&reset-sync=true';
                 document.getElementById('knawat-resetsync').setAttribute('href', x);
             });
         });
