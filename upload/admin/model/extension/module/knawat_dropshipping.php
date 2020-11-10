@@ -545,7 +545,7 @@ class ModelExtensionModuleKnawatDropshipping extends Model {
             if( empty( $attr_name ) ){
                 $attr_name = isset( $attribute_names['tr'] ) ? $attribute_names['tr'] : '';
             }
-			$attr_name = !empty($attr_name)? addslashes($attr_name) : "";
+            $attr_name = !empty($attr_name)? addslashes($attr_name) : "";
              $sql = "UPDATE " . DB_PREFIX . "option_description SET name = '".$attr_name."' WHERE option_id = ".(int)$option_id." AND language_id = " . (int)$lng['language_id'];
              $this->db->query($sql);
         }
