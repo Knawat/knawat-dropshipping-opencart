@@ -1,0 +1,25 @@
+name: Zip repo to opencart extension type
+on:
+  release:
+    types: [published]
+jobs:
+  tag:
+    name: New release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@master
+    - name: Opencart extension zip
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'knawat-dropshipping-opencart.ocmod.zip'
+        exclusions: '*.git* .gitignore'
+    - name: Upload release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ${{github.workspace}}/${{ github.event.repository.name }}.ocmod.zip
+        asset_name: ${{ github.event.repository.name }}.ocmod.zip
+        asset_content_type: application/zip
