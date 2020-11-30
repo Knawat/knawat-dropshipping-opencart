@@ -9,6 +9,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@master
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
     - name: Opencart extension zip
       uses: thedoctor0/zip-release@master
       with:
@@ -20,6 +23,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ${{github.workspace}}/${{ github.event.repository.name }}.ocmod.zip
-        asset_name: ${{ github.event.repository.name }}.ocmod.zip
+        asset_path: ${{ github.workspace }}/${{ github.event.repository.name }}.ocmod.zip
+        asset_name: ${{ github.event.repository.name }}-${{ VERSION }}.ocmod.zip
         asset_content_type: application/zip
