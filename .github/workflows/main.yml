@@ -24,5 +24,5 @@ jobs:
       with:
         upload_url: ${{ github.event.release.upload_url }}
         asset_path: ${{ github.workspace }}/${{ github.event.repository.name }}.ocmod.zip
-        asset_name: ${{ github.event.repository.name }}-${{ VERSION }}.ocmod.zip
+        asset_name: ${{ github.event.repository.name }}-${{ steps.get_version.outputs.VERSION }}.ocmod.zip
         asset_content_type: application/zip
