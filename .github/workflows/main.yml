@@ -14,7 +14,7 @@ jobs:
       run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
     - name: Bumb the version
       run: |
-        sed -i -e "s/\(<version>\)${{ steps.get_version.outputs.VERSION }}\(<\/version>\)/\1$X\2/" install.xml
+        sed -i -e "s@\(<version>\).*\(<\/version>\)@\1${{ steps.get_version.outputs.VERSION }}\2@" install.xml
     - name: Opencart extension zip
       uses: thedoctor0/zip-release@master
       with:
