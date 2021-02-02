@@ -15,7 +15,7 @@
      * Contain Knawta API URL
      * @access private
      */
-    private $api_url = 'https://mp.knawat.io/api';
+    private $api_url = 'https://mp.knawat.io/api/';
 
     /**
      * Contain Consumer key
